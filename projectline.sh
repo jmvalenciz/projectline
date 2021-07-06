@@ -20,7 +20,7 @@ ${yellow}OPTIONS:${normal}
     ${green}-c <FILE>${normal}    Set config file (default: ~/.config/projectilne/config.sh)
     ${green}-p <PATH>${normal}    Set projects path (default: ~/projects)"
 
-while getopts ':h:c:p:' option; do
+while getopts ':hc:p:' option; do
     case "${option}" in
         h)  echo -e "$usage"
             exit 0
