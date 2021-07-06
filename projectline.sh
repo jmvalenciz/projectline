@@ -20,6 +20,12 @@ ${yellow}OPTIONS:${normal}
     ${green}-c <FILE>${normal}    Set config file (default: ~/.config/projectilne/config.sh)
     ${green}-p <PATH>${normal}    Set projects path (default: ~/projects)"
 
+if test -f "${config_file}" ; then
+    source "${config_file}"
+else
+    echo -e "${bold}${yellow}WARNING:${normal} config file doesn't exists. Loading defaults"
+fi
+
 while getopts ':hc:p:' option; do
     case "${option}" in
         h)  echo -e "$usage"
@@ -41,17 +47,11 @@ while getopts ':hc:p:' option; do
     esac
 done
 
-if test -f "${config_file}" ; then
-    source "${config_file}"
-else
-    echo -e "${bold}${yellow}WARNING:${normal} config file doesn't exists. Loading defaults"
-fi
-
-[ ! -d "$projects_path" ] && echo -e "${bold}${red}ERROR:${normal} '$projects_path' doesn't exists." && exit 1
-
 if [ "${projects_path: -1}" != "/" ]; then
     projects_path+="/"
 fi
+
+[ ! -d "$projects_path" ] && echo -e "${bold}${red}ERROR:${normal} '$projects_path' doesn't exists." && exit 1
 
 cd $projects_path
 

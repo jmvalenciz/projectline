@@ -1,4 +1,4 @@
-projects_path="~/projects"
+projects_path=~/projects
 
 function onReady(){ 
     tmux new -d -s $project_name -n editor
