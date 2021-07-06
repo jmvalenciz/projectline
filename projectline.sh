@@ -8,7 +8,7 @@ green="\e[32m"
 normal=$(tput sgr0)
 
 # Default variables
-base_path=~/projects
+projects_path=~/projects
 config_file=~/.config/projectline/config.sh
 usage="${green}projectline${normal}: program to set the environment for a project
 
@@ -30,7 +30,7 @@ while getopts ':hc:p:' option; do
         :)  echo -e "${bold}${red}ERROR:${normal} missing argument for -${OPTARG}" >&2
             exit 1
             ;;
-        p)  base_path=$OPTARG
+        p)  projects_path=$OPTARG
             ;;
         :)  echo -e "${bold}${red}ERROR:${normal} missing argument for -${OPTARG}" >&2
             exit 1
@@ -47,15 +47,15 @@ else
     echo -e "${bold}${yellow}WARNING:${normal} config file doesn't exists. Loading defaults"
 fi
 
-if [ "${base_path: -1}" != "/" ]; then
-    base_path+="/"
+[ ! -d "$projects_path" ] && echo -e "${bold}${red}ERROR:${normal} '$projects_path' doesn't exists." && exit 1
+
+if [ "${projects_path: -1}" != "/" ]; then
+    projects_path+="/"
 fi
 
-[ ! -d "$base_path" ] && echo -e "${bold}${red}ERROR:${normal} '$base_path' doesn't exists." && exit 1
+cd $projects_path
 
-cd $base_path
-
-project_path=$base_path
+project_path=$projects_path
 project_relative_path=$(fd -H -t d '\.git$' --prune | sed 's#/.git##' | fzf )
 
 if [ -z "$project_relative_path" ]; then
