@@ -6,6 +6,9 @@ A program to set the environment for a project
 ## Dependencies
 - [fd](https://github.com/sharkdp/fd)
 - [fzf](https://github.com/junegunn/fzf)
+- git
+
+The git dependencie is because it reads inside your projects folder looking for folders with .git inside
 
 ## Installation
 
