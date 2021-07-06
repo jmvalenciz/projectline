@@ -70,8 +70,8 @@ cd $project_path
 
 if [ $(type -t onReady) ]; then
     onReady
-    exit 0
 else
     tmux new -d -s $project_name -n editor
     tmux a -t $project_name
 fi
+exit 0

@@ -18,6 +18,9 @@ And if you want to install the default config file, you can use this
 make config
 ```
 
+## Demo
+![projectline demo](assets/tty.gif "projectline demo")
+
 ## Authors
 
 - [@jmvalenciz](https://www.github.com/jmvalenciz)
