@@ -56,7 +56,14 @@ fi
 cd $base_path
 
 project_path=$base_path
-project_path+=$(fd -H -t d '\.git$' --prune | sed 's#/.git##' | fzf )
+project_relative_path=$(fd -H -t d '\.git$' --prune | sed 's#/.git##' | fzf )
+
+if [ -z "$project_relative_path" ]; then
+    exit 0
+fi
+
+project_path+=$project_relative_path
+
 project_name=$(basename $project_path)
 
 cd $project_path

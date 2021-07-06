@@ -1,3 +1,5 @@
+projects_path="~/projects"
+
 function onReady(){ 
     tmux new -d -s $project_name -n editor
     tmux send-keys -t "$project_name:1.0" 'nvim' Enter
