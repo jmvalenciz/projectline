@@ -68,10 +68,17 @@ project_name=$(basename $project_path)
 
 cd $project_path
 
-if [ $(type -t onReady) ]; then
-    onReady
+if [ $(type -t before) ]; then
+    before
 else
+    echo -e "${bold}${yellow}WARNING:${normal} before() not found. Executing default"
     tmux new -d -s $project_name -n editor
+fi
+
+if [ $(type -t after) ]; then
+    after
+else  
+    echo -e "${bold}${yellow}WARNING:${normal} after() not found. Executing default"
     tmux a -t $project_name
 fi
 exit 0
