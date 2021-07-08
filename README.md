@@ -28,11 +28,7 @@ make config
 ```
 
 # Configuration
-`projectline` reads a config file in `~/.config/projectline/config.sh`. You can install an example of `config.sh` using this command:
-```bash
-make config
-```
-Here you can find the variable `projects_path` there you set the folder where `projectline` will look for your projects and you will find two functions: `before()` and `after()` where you have to put the commands you want to execute when you choose one project.
+`projectline` reads a config file in `~/.config/projectline/config.sh`. Here you can find the variable `projects_path` there you set the folder where `projectline` will look for your projects and you will find two functions: `before()` and `after()` where you have to put the commands you want to execute when you choose one project.
 
 The reason to have `before()` and `after()` is because I want to add hooks for specific languages and tools in the future and those hooks will be executed between `before()` and `after()`.
 
