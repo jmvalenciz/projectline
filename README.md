@@ -42,6 +42,12 @@ function after(){
 ```
 ![projectline demo](assets/tty.gif "projectline demo")
 
+## TODO
+- [ ] Add Hooks for specific languages and tools (Rust, Node, React, Python, Go, etc.)
+- [ ] Add a `projectsfile.json` to store project paths, custom hooks for each project
+- [ ] Migration to Rust to make faster searchs and parse json easily
+- [ ] Add a way to switch between `projectsfile.json` and standard search
+
 ## Authors
 
 - [@jmvalenciz](https://www.github.com/jmvalenciz)
