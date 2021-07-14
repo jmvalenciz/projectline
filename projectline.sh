@@ -58,9 +58,6 @@ cd $projects_path
 project_path=$projects_path
 project_relative_path=$(FZF_DEFAULT_COMMAND="fd -H -t d '\.git$' --prune ./ | sed 's#/.git##'" fzf --bind "change:reload:fd -H -t d '\.git$' --prune ~/proyectos| sed 's#/.git##' {q} || true" --ansi --phony --query "")
 
-echo $(pwd)
-echo $($FZF_DEFAULT_COMMAND)
-
 if [ -z "$project_relative_path" ]; then
     exit 0
 fi
@@ -71,12 +68,58 @@ project_name=$(basename $project_path)
 
 cd $project_path
 
+
+
 if [ $(type -t before) ]; then
     before
 else
     echo -e "${bold}${yellow}WARNING:${normal} before() not found. Executing default"
     tmux new -d -s $project_name -n editor
 fi
+
+if [ $(type -t onRust) ]; then
+    if test -e "Cargo.toml"; then
+        onRust    
+    fi
+fi
+
+if [ $(type -t onNode) ]; then
+    if test -e "package.json"; then
+        onNode
+    fi
+fi
+
+if [ $(type -t onPython) ]; then
+    if test -e "requirements.txt"; then
+        onPython
+    fi
+fi
+
+if [ $(type -t onDocker) ]; then
+    if test -e "Dockerfile"; then
+        onDocker
+    fi
+fi
+
+if [ $(type -t onDockerCompose) ]; then
+    if test -e "docker-compose.yml" || test -e "docker-compose.yaml"; then
+        onDockerCompose
+    fi
+fi
+
+if [ $(type -t onCmake) ]; then
+    if test -e "CMakeLists.txt"; then
+        onCmake
+    fi
+fi
+
+if [ $(type -t onGo) ]; then
+    if test -e "go.mod"; then
+        onGo    
+    fi
+fi
+
+
 
 if [ $(type -t after) ]; then
     after
