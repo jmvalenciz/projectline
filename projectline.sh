@@ -56,7 +56,10 @@ fi
 cd $projects_path
 
 project_path=$projects_path
-project_relative_path=$(fd -H -t d '\.git$' --prune | sed 's#/.git##' | fzf )
+project_relative_path=$(FZF_DEFAULT_COMMAND="fd -H -t d '\.git$' --prune ./ | sed 's#/.git##'" fzf --bind "change:reload:fd -H -t d '\.git$' --prune ~/proyectos| sed 's#/.git##' {q} || true" --ansi --phony --query "")
+
+echo $(pwd)
+echo $($FZF_DEFAULT_COMMAND)
 
 if [ -z "$project_relative_path" ]; then
     exit 0
