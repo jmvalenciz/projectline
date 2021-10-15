@@ -8,6 +8,7 @@ install:
 	@if ! command -v fd &> /dev/null ;then echo "fd not found";exit 1;fi;
 	@if ! command -v fzf &> /dev/null ;then echo "fzf not found";exit 1;fi;
 	@chmod +x projectline.sh
+	@mkdir -pv ~/.local/bin
 	@cp projectline.sh ~/.local/bin/projectline
 	@echo "projectline installed successfully!"
 
